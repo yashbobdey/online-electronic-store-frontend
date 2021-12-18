@@ -1,0 +1,54 @@
+.Card {
+  overflow: hidden;
+  justify-content: space-between;
+  width: 19.375rem;
+  margin: 10px;
+  border: 0.7px solid #cccccc;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+.Card:hover {
+  box-shadow: 0 0 60px rgb(204, 204, 204);
+
+  transform: translateY(-10px);
+}
+
+.img {
+  height: 18.75rem;
+  width: 100%;
+  object-fit: contain;
+}
+
+.title {
+  overflow: hidden;
+  font-weight: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* color:; */
+}
+.description {
+  overflow: hidden;
+  font-size: 18px !important;
+  font-weight: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* color:; */
+}
+
+.left {
+  float: left;
+  font-weight: bold;
+  font-size: 1.2rem;
+
+  /* color:; */
+}
+
+.right {
+  float: right;
+  font-weight: bold;
+  background-color: green;
+  color: white;
+  font-size: 1rem;
+
+  /* color:; */
+}

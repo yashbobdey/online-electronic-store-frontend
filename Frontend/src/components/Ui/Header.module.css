@@ -1,0 +1,40 @@
+.navbar {
+  background-color: #171717;
+
+  position: sticky;
+
+  font-size: 1.1rem;
+
+  font-weight: initial;
+
+  /* background: -webkit-linear-gradient(to right, #0c2461, #095388, #079992); */
+
+  /* background: linear-gradient(to right, #0c2461, #0a3d62, #079992); */
+}
+
+.site_icon {
+  color: #ffae00;
+  font-size: 2.2rem;
+  padding-right: 15px;
+  /* background: -webkit-linear-gradient(#d3d1d1, #fc9003);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;*/
+}
+
+.logo {
+  color: #ffffff;
+  /* text-shadow: #171717; */
+  font-size: 2.5rem;
+  vertical-align: text-top;
+  margin-left: 5px;
+  font-family: "Aclonica";
+  /* background: -webkit-linear-gradient(#fff, #b1980d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+.logo:hover {
+  color: #ffae00;
+
+  text-shadow: #f5b78b;
+}

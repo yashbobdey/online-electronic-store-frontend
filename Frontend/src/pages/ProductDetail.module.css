@@ -1,0 +1,29 @@
+.main {
+  background-color: #ffffff;
+  width: auto;
+  display: flex;
+  min-height: 100vh;
+  margin-top: 5rem;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.sub_main {
+  margin-top: 40px;
+}
+
+.rating {
+  color: darkgreen;
+}
+
+.specslist {
+  margin-top: 20px;
+}
+.specslist h3 {
+  padding-left: -60px;
+}
+
+.specslist h5 {
+  margin-top: 20px;
+  padding-left: -40px;
+}
