@@ -104,7 +104,7 @@ export const GET_PRODUCTS_BY_CATEGORY_FAILURE =
 //-------------------------- URL ------------------------------
 //______________________________________________________________
 
-export const API_USERS_URL = "http://localhost:8080/users";
-export const API_PRODUCTS_URL = "http://localhost:8080/products";
-export const API_ORDERS_URL = "http://localhost:8080/orders";
-export const API_CART_URL = "http://localhost:8080/carts";
+export const API_USERS_URL = "https://one-electronic-store-backend.herokuapp.com/users";
+export const API_PRODUCTS_URL = "https://one-electronic-store-backend.herokuapp.com/products";
+export const API_ORDERS_URL = "https://one-electronic-store-backend.herokuapp.com/orders";
+export const API_CART_URL = "https://one-electronic-store-backend.herokuapp.com/carts";
