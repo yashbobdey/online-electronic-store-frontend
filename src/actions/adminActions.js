@@ -94,7 +94,7 @@ const getOrders = (payload) => {
 };
 export const fetchOrders = () => {
   return (dispatch) => {
-    fetch(https://one-electronic-store-backend.herokuapp.com/orders", {
+    fetch("https://one-electronic-store-backend.herokuapp.com/orders", {
       "content-type": "application/json",
     })
       .then((res) => res.json())
