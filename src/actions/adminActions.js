@@ -11,7 +11,7 @@ const getProducts = (payload) => {
 };
 export const fetchProducts = () => {
   return (dispatch) => {
-    fetch("http://localhost:8080/products", {
+    fetch("https://one-electronic-store-backend.herokuapp.com/products", {
       "content-type": "application/json",
     })
       .then((res) => res.json())
@@ -50,7 +50,7 @@ export const getOneProduct = (payload) => {
 
 export const getProduct = (id) => {
   return (dispatch) => {
-    fetch("http://localhost:8080/products/" + id, {
+    fetch("https://one-electronic-store-backend.herokuapp.com/products/" + id, {
       "content-type": "application/json",
     })
       .then((res) => res.json())
@@ -68,7 +68,7 @@ export const updateOneProduct = (payload) => ({
 
 export const updateProduct = (product) => {
   return (dispatch) => {
-    fetch("http://localhost:8080/products/" + product._id, {
+    fetch("https://one-electronic-store-backend.herokuapp.com/products/" + product._id, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -94,7 +94,7 @@ const getOrders = (payload) => {
 };
 export const fetchOrders = () => {
   return (dispatch) => {
-    fetch("http://localhost:8080/orders", {
+    fetch(https://one-electronic-store-backend.herokuapp.com/orders", {
       "content-type": "application/json",
     })
       .then((res) => res.json())
