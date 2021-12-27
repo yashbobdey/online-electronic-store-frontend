@@ -12,6 +12,7 @@ import ProductDetail from "../../pages/ProductDetail.js";
 import Login from "../../pages/Login.js";
 import Register from "../../pages/Register.js";
 import Profile from "../../pages/Profile.js";
+import UpdateProfile from "../../pages/UpdateProfile.js";
 import Cart from "../../pages/Cart.js";
 import OrderHistory from "../../pages/OrderHistory";
 import ConfirmOrder from "../../pages/ConfirmOrder";
@@ -46,6 +47,7 @@ export default function MySwitch() {
   }, [dispatch]);
   return (
     <Container className="min-vh-100">
+      {/* displaying all the routes */}
       <Switch>
         {isAdmin && (
           <Route path="/admin/products" component={AdminViewProducts} />
@@ -60,6 +62,7 @@ export default function MySwitch() {
         <Route path="/about" component={About} exact />
         <Route path="/contact" component={Contact} exact />
         <Route path="/profile" component={Profile} exact />
+        <Route path="/UpdateProfile/:id" component={UpdateProfile} exact />
         <Route path="/products" component={Products} exact />
         <Route path="/register" component={Register} exact />
         <Route path="/orders" component={OrderHistory} exact />

@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Button } from "react-bootstrap";
 
 export default function CategoryCard({ category, onClick }) {
+  //category card component for displaying product categories on home page
   return (
     <Card style={{ width: "30rem" }} className="border border-info mx-3 my-3 ">
       <Card.Header className="bg-dark text-white "> </Card.Header>

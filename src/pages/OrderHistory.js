@@ -8,20 +8,17 @@ import { getOrders } from "../actions/ordersActions";
 function OrderHistory() {
   const dispatch = useDispatch();
   const user_id = useSelector((state) => state.user.user._id);
-  // const history = useHistory();
-  // log out user if token is invalid
-  // const { error } = useSelector((state) => state.order);
-  // useEffect(() => {
-  //   if (error === "Token Invalid!!") history.push("/login");
-  // }, [error, history]);
 
   let ordersList = [];
   useEffect(() => {
-    dispatch(getOrders(user_id));
+    dispatch(getOrders(user_id)); //dispatching request for getting orders
   }, [user_id, dispatch]);
 
   const orders = useSelector((state) => state.order.orders);
   if (orders.length > 0) {
+    {
+      /* mapping orders into orderItem component....latest first */
+    }
     ordersList = orders.reverse().map((order) =>
       order.items.map((item) => {
         return (
@@ -40,28 +37,13 @@ function OrderHistory() {
       })
     );
   }
-  // if (products) {
-  //   var orderList = products.map((info, i) => {
-  //     return (
-  //       <Col md={9}>
-  //         <OrderItem
-  //           image={info.image}
-  //           title={info.title}
-  //           id={info.id}
-  //           price={info.price}
-  //           ratings={info.ratings}
-  //           date={info.date}
-  //         />
-  //       </Col>
-  //     );
-  //   });
-  // }
+
   return (
     <>
       <h4 className="text-center">Order Details</h4>
       <Container>
         {orders && (
-          <Row className="justify-content-md-center">{ordersList}</Row>
+          <Row className="justify-content-md-center">{ordersList}</Row> //displaying orders
         )}
       </Container>
     </>

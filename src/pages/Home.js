@@ -16,12 +16,13 @@ export default function Home() {
 
   const onClickHandler = (category) => {
     dispatch(getProductsByCategory(category));
-    history.push("/products");
+    history.push("/products"); //redirecting to particular category of products
   };
 
   const isLoading = useSelector((state) => state.user.isLoading);
 
   const categoryList = categories.map((category, index) => {
+    //mapping the catogories into category card
     return (
       <CategoryCard
         key={index}
@@ -36,9 +37,10 @@ export default function Home() {
       {isLoading && <Spinner animation="border" variant="primary" />}
       <Container>
         <Row className="justify-content-md-center">
-          <ProductCarousel />
+          <ProductCarousel /> {/* displaying the carousel */}
         </Row>
-        <Row className="justify-content-md-center">{categoryList}</Row>
+        <Row className="justify-content-md-center">{categoryList}</Row>{" "}
+        {/* displaying the category wise cards */}
       </Container>
     </div>
   );

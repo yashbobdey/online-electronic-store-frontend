@@ -23,7 +23,7 @@ export default function MyModal(props) {
         {props.variant === "error" && (
           <Button variant="primary" onClick={props.handleLogin}>
             Login Now
-          </Button>
+          </Button> //login now modal
         )}
 
         {props.variant === "success" && (

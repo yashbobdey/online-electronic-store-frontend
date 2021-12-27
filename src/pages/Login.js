@@ -11,15 +11,15 @@ import { login } from "../actions/userActions";
 export default function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const loginError = useSelector((state) => state.user.loginError);
+  const loginError = useSelector((state) => state.user.loginError); //getting login error
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const isAdmin = useSelector((state) => state.user.user.isAdmin);
+  const isAdmin = useSelector((state) => state.user.user.isAdmin); //checking if user is an admin
 
   useEffect(() => {
     if (isAdmin) {
-      isLoggedIn && history.replace("/admin/products");
+      isLoggedIn && history.replace("/admin/products"); //redirecting if user is admin
     } else {
-      isLoggedIn && history.replace("/");
+      isLoggedIn && history.replace("/"); //redirecting to customer landing page
     }
     loginError && setShow(true);
   }, [isLoggedIn, isAdmin, loginError, history]);
@@ -29,14 +29,14 @@ export default function Login() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm(); //react-hook-form
 
   watch("email");
   watch("password");
   //------------------------------------------------ #1 ------------------
   const submitHandler = (data) => {
     console.log("on submit data: ", data);
-    dispatch(login(data));
+    dispatch(login(data)); //dispatching login request
   };
 
   //---------------------- Error handling ----------------
@@ -61,6 +61,7 @@ export default function Login() {
           </Toast>
         </Col>
       </Row>
+      {/* <--------Login form----------> */}
       <Row md="4" className="justify-content-md-center">
         <Form onSubmit={handleSubmit(submitHandler)}>
           <Form.Group controlId="formBasicEmail">
@@ -78,7 +79,8 @@ export default function Login() {
               })}
             />
             <Form.Text className="text-danger">
-              {errors.email && errors.email.message}
+              {errors.email && errors.email.message}{" "}
+              {/* form validation error */}
             </Form.Text>
           </Form.Group>
 
@@ -93,7 +95,8 @@ export default function Login() {
               })}
             />
             <Form.Text className="text-danger">
-              {errors.password && errors.password.message}
+              {errors.password && errors.password.message}{" "}
+              {/* form validation error */}
             </Form.Text>
           </Form.Group>
           <Form.Group controlId="formBasicCheckbox">
@@ -107,7 +110,8 @@ export default function Login() {
       <Row className="justify-content-md-center">
         <p className="mt-5">
           Don't have an account?{" "}
-          <Link to="register">Register for a new account</Link>
+          <Link to="register">Register for a new account</Link>{" "}
+          {/* register for new user */}
         </p>
       </Row>
     </Container>

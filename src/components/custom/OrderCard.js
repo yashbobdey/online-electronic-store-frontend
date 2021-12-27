@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import {
@@ -9,38 +9,35 @@ import {
 
 import MyModal from "../custom/MyModal";
 
-
 export default function OrderCard({ product }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [show, setShow] = useState(false);
 
   const user_id = useSelector((state) => state.user.user._id);
-  const errorMessage = useSelector((state) => state.cart.error);
+  const errorMessage = useSelector((state) => state.cart.error); //getting cart related error
   useEffect(() => {
     errorMessage && setShow(true);
   }, [dispatch, errorMessage]);
 
-   
   const handleClose = () => setShow(false);
-  const handleLogin = () => history.push("/login");
+  const handleLogin = () => history.push("/login"); //redirecting to login
 
   const deleteHandler = () => {
-    dispatch(removeFromCart(user_id, product));
+    dispatch(removeFromCart(user_id, product)); //request for removing item from the cart
   };
   const increaseQuantityHandler = () => {
-    dispatch(increaseQuantity(user_id, product));
+    dispatch(increaseQuantity(user_id, product)); //request for increasing cart item quantity
   };
   const decreaseQuantityHandler = (quantity) => {
-    if (quantity === 1){
+    if (quantity === 1) {
       dispatch(removeFromCart(user_id, product));
-    } else
-    dispatch(decreaseQuantity(user_id, product));
+    } else dispatch(decreaseQuantity(user_id, product)); //request for decreasing cart item quantity
   };
   return (
     <div>
-     <MyModal
-      show={show}
+      <MyModal
+        show={show}
         variant="error"
         title="Something went wrong"
         message={errorMessage}

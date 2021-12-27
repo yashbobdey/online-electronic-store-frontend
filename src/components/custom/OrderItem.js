@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 export default function OrderItem(props) {
   const history = useHistory();
-
   return (
     <div>
       <div className="card mb-3 ">
@@ -37,7 +36,7 @@ export default function OrderItem(props) {
                 onClick={(e) => {
                   e.preventDefault();
 
-                  history.push(`/product/${props.productId}`);
+                  history.push(`/product/${props.productId}`); //redirecting to same product for buying again
                 }}
               >
                 Buy Again

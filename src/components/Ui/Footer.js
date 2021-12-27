@@ -20,19 +20,40 @@ const FooterPg = () => {
           <Col md={2} className={styles.col_company}>
             <h6>{constants.FOOTER_COMPANY}</h6>
             <ul>
-              <li>{constants.FOOTER_COMPANY_OUR_STORY}</li>
-              <li>{constants.FOOTER_COMPANY_CAREERS}</li>
-              <li>{constants.FOOTER_COMPANY_PRESS}</li>
-              <li>{constants.FOOTER_COMPANY_CONTACT}</li>
+              <li>
+                {constants.FOOTER_COMPANY_OUR_STORY}{" "}
+                <i class="fas fa-book-open"></i>
+              </li>
+              <li>
+                {constants.FOOTER_COMPANY_CAREERS} <i class="fas fa-road"></i>
+              </li>
+              <li>
+                {constants.FOOTER_COMPANY_PRESS}{" "}
+                <i class="far fa-newspaper"></i>
+              </li>
+              <li>
+                {constants.FOOTER_COMPANY_CONTACT}{" "}
+                <i class="far fa-address-book"></i>
+              </li>
             </ul>
           </Col>
           <Col md={2} className={styles.col_help}>
             <h6>{constants.FOOTER_HELP}</h6>
             <ul>
-              <li>{constants.FOOTER_HELP_SHIPPING}</li>
-              <li>{constants.FOOTER_HELP_RETURNS}</li>
-              <li>{constants.FOOTER_HELP_PAYMENT}</li>
-              <li>{constants.FOOTER_HELP_FAQ}</li>
+              <li>
+                {constants.FOOTER_HELP_SHIPPING}{" "}
+                <i class="fas fa-shipping-fast"></i>
+              </li>
+              <li>
+                {constants.FOOTER_HELP_RETURNS} <i class="fas fa-undo"></i>
+              </li>
+              <li>
+                {constants.FOOTER_HELP_PAYMENT}{" "}
+                <i class="fas fa-money-bill"></i>
+              </li>
+              <li>
+                {constants.FOOTER_HELP_FAQ} <i class="fas fa-question"></i>
+              </li>
             </ul>
           </Col>
           <Col md={4} className={styles.col_newsletter}>

@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Carousel,
-  Button,
-  Table,
-  Tooltip,
-  OverlayTrigger,
-} from "react-bootstrap";
+import { Container, Row, Col, Carousel, Button, Table } from "react-bootstrap";
 
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,29 +8,22 @@ import styles from "./ProductDetail.module.css";
 import { addToCart } from "../actions/cartActions";
 import { getProduct } from "../actions/productActions";
 
-import MyModal from "../components/custom/MyModal";
-
 export default function ProductDetail() {
-  const [toolTip, setToolTip] = useState("Add to Cart");
   const params = useParams();
   const product_id = params.id;
   const dispatch = useDispatch();
   const history = useHistory();
 
-  //Modal
-  const [show, setShow] = useState(false);
-  const handleLogin = () => history.push("/login");
-  const handleErrorClose = () => setShow(false);
-  const errorMessage = useSelector((state) => state.cart.error);
-
-  const [showSuccess, setShowSuccess] = useState(false);
-  const handleSuccessClose = () => setShowSuccess(false);
+  const [aboutCart, setAboutCart] = useState("Add To Cart");
+  const { cartItems } = useSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(getProduct(product_id));
-    errorMessage && setShow(true);
-    toolTip === "Added!" && setShowSuccess(true);
-  }, [product_id, dispatch, errorMessage, toolTip]);
+    for (const item of cartItems) {
+      if (item._id === product._id) setAboutCart("Go To Cart");
+      else setAboutCart("Add To Cart");
+    }
+  }, [product_id, dispatch, cartItems]);
 
   let product = useSelector((state) => state.products.product);
   const user_id = useSelector((state) => state.user.user._id);
@@ -61,22 +45,6 @@ export default function ProductDetail() {
 
   return (
     <>
-      <MyModal
-        show={show}
-        variant="error"
-        title="Session Has Expired"
-        message={errorMessage}
-        handleLogin={handleLogin}
-        handleClose={handleErrorClose}
-      />
-      <MyModal
-        show={showSuccess}
-        variant="success"
-        title="Item added Successfully!"
-        message={`You item (${product.name}) has been successfully being added to the cart.`}
-        handleClose={handleSuccessClose}
-      />
-
       {product.specification && (
         <div className={styles.main} key={product._id}>
           <Container fluid>
@@ -152,31 +120,28 @@ export default function ProductDetail() {
 
                   <p>{product.description[1]}</p>
                 </div>
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip id={`tooltip-$"top"`}>{toolTip}</Tooltip>}
-                >
-                  <Button
-                    variant="outline-warning"
-                    className="m-2"
-                    size="lg"
-                    onClick={() => {
-                      const newProduct = {
-                        _id: product._id,
-                        name: product.name,
-                        image: product.images[0],
-                        description: product.description[0],
-                        price: product.price,
-                        quantity: 1,
-                      };
 
-                      dispatch(addToCart(user_id, newProduct));
-                      setToolTip("Added!");
-                    }}
-                  >
-                    <i className="fas fa-cart-plus"></i> Add To Cart
-                  </Button>
-                </OverlayTrigger>
+                <Button
+                  variant="outline-warning"
+                  className="m-2"
+                  size="lg"
+                  onClick={() => {
+                    const newProduct = {
+                      _id: product._id,
+                      name: product.name,
+                      image: product.images[0],
+                      description: product.description[0],
+                      price: product.price,
+                      quantity: 1,
+                    };
+
+                    dispatch(addToCart(user_id, newProduct));
+
+                    history.push("/cart");
+                  }}
+                >
+                  <i className="fas fa-cart-plus"></i> {`${aboutCart}`}
+                </Button>
 
                 <Button
                   className="m-2"

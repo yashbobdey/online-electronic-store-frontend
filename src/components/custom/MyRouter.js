@@ -20,6 +20,7 @@ export default function MyRouter() {
   }
 
   useEffect(() => {
+    //getting data from local storage
     const token = localStorage.getItem("token");
     const user_id = localStorage.getItem("user_id");
     const firstName = localStorage.getItem("user_lname");
@@ -41,13 +42,15 @@ export default function MyRouter() {
   return (
     <>
       <Router>
-        {isAdmin && <AdminHeader />}
-        {!isAdmin && <Header />}
-
+        {isAdmin && <AdminHeader />}{" "}
+        {/*if user is admin, displaying admin header */}
+        {!isAdmin && <Header />}{" "}
+        {/* if user is customer, displaying normal header */}
         <MySwitch />
-
-        {isAdmin && <AdminFooter />}
-        {!isAdmin && <Footer />}
+        {isAdmin && <AdminFooter />}{" "}
+        {/*if user is admin, displaying admin footer */}
+        {!isAdmin && <Footer />}{" "}
+        {/* if user is customer, displaying normal footer */}
       </Router>
     </>
   );

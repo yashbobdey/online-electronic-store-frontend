@@ -21,7 +21,7 @@ export default function Registration() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm(); //react-hook-form
 
   const password = useRef({});
   password.current = watch("password", "");
@@ -40,6 +40,7 @@ export default function Registration() {
   // const error = "This is an error";
 
   const submitHandler = (data) => {
+    //creating new user to save in the database
     const user = {
       firstName: data.fname,
       lastName: data.lname,
@@ -53,13 +54,14 @@ export default function Registration() {
       },
     };
     console.log("on submit data: ", user);
-    dispatch(registerUser(user));
-    history.replace("/login");
+    dispatch(registerUser(user)); //registering the user to db
+    history.replace("/login"); //redirecting to login page
   };
 
   return (
     <Container>
-      {error && <h2 className="text-danger text-center border">{error}</h2>}
+      {error && <h2 className="text-danger text-center border">{error}</h2>}{" "}
+      {/* displaying error */}
       <Row className="justify-content-md-center" md="8">
         <Form onSubmit={handleSubmit(submitHandler)}>
           <Form.Row>
@@ -68,6 +70,7 @@ export default function Registration() {
               <Form.Control
                 type="text"
                 placeholder="Enter First Name"
+                //form validation
                 {...register("fname", {
                   required: "name is required",
                   pattern: {
@@ -77,7 +80,8 @@ export default function Registration() {
                 })}
               />
               <Form.Text className="text-danger">
-                {errors.fname && errors.fname.message}
+                {errors.fname && errors.fname.message}{" "}
+                {/* form validation error */}
               </Form.Text>
             </Form.Group>
 
@@ -236,7 +240,8 @@ export default function Registration() {
           </Button>
 
           <p className="text-center alreadyRegister mt-3">
-            Already registered? <Link to="login">Log in.</Link>
+            Already registered? <Link to="login">Log in.</Link>{" "}
+            {/* redirecting to login page */}
           </p>
         </Form>
       </Row>

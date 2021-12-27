@@ -16,8 +16,8 @@ const Navbarr = () => {
   const logoutHandler = (e) => {
     e.preventDefault();
     dispatch(logout());
-    history.push("/login");
-  };
+    history.push("/login"); //redirecting to common login page
+  }; //adming logout handler
 
   return (
     <>
@@ -31,12 +31,13 @@ const Navbarr = () => {
             <Nav className="mt-2 mb-2">
               <Nav.Link as={Link} to="/admin/products">
                 VIEW PRODUCTS
-              </Nav.Link>
+              </Nav.Link>{" "}
+              {/* link for viewing products as admin */}
             </Nav>
 
             <Nav className="mt-2 mb-2">
               <Nav.Link as={Link} to="/admin/orders">
-                VIEW ORDERS
+                VIEW ORDERS {/* link for viewing orders as admin */}
               </Nav.Link>
             </Nav>
             <Nav className="mt-2 mb-2">

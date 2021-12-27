@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Table } from "react-bootstrap";
 import { connect } from "react-redux";
 import * as actions from "../actions/adminActions";
 const AdminOrders = (props) => {
   useEffect(() => {
     props.onFetch();
-  }, []);
+  }, [props]);
 
-  let ordersList = [];
+  let ordersList = []; //initialising empty orderList
   if (props.orders) {
     ordersList = props.orders.map((order, i) =>
       order.items.map((item) => {
+        // mapping each order into table data
         return (
           <tr key={i}>
             <td>{i + 1}</td>
@@ -27,6 +28,7 @@ const AdminOrders = (props) => {
   }
 
   return (
+    //organizing complete data into table
     <>
       <Table striped bordered hover>
         <thead>
@@ -47,6 +49,7 @@ const AdminOrders = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  //mapping state to props
   console.log("Inside Component ", state);
   return {
     orders: state.admin.orders,
@@ -54,6 +57,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  //mapping dispatch to props
   return {
     //  onDelete:(id)=>dispatch(actions.deleteOne({id})),
     onFetch: () => dispatch(actions.fetchOrders()),

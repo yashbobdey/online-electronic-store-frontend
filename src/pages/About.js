@@ -3,11 +3,11 @@ import { Container } from "react-bootstrap";
 export default function AboutUs() {
   return (
     <Container
-      className=" mt-3 min-vh-100  text-justify "
+      className=" mt-3 min-vh-100  text-justify " // organizing margin and min. view height
       style={{
         backgroundImage:
           "url('https://th.bing.com/th/id/R.669e5afad4adbcdc66af89ed7f3f6240?rik=9RHN83mmqC%2fm3w&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f11%2f92%2fTduYC2.jpg&ehk=OHlwEgDWdNiHMoV6hivuertk5oUVQtxcwJbdDN7kAko%3d&risl=&pid=ImgRaw')",
-      }}
+      }} //url for background image
     >
       <div class="mx-auto text-center">
         <h6>Online Electronic Store - About Us</h6>

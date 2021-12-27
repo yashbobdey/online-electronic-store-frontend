@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 export default function ProductCarousel() {
   const history = useHistory();
   return (
+    //home page carousel
     <>
       <Carousel fade className="my-5">
         <Carousel.Item>
@@ -15,7 +16,8 @@ export default function ProductCarousel() {
             onClick={() => {
               history.push(`/product/60f9a6f8b95d223218ef4c4a`);
             }}
-          />
+          />{" "}
+          {/*redirecting to particular hero product detail page from carousel*/}
         </Carousel.Item>
         <Carousel.Item>
           <img

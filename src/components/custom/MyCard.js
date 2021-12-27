@@ -1,25 +1,25 @@
 //
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../../actions/cartActions";
+// import { useSelector, useDispatch } from "react-redux";
+// import { addToCart } from "../../actions/cartActions";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import styles from "./MyCard.module.css";
 
 const Cards = ({ product, onClick }) => {
-  const dispatch = useDispatch();
-  const user_id = useSelector((state) => state.user.user._id);
+  // const dispatch = useDispatch();
+  // const user_id = useSelector((state) => state.user.user._id);
 
-  const addToCartHandler = () => {
-    const newProduct = {
-      _id: product._id,
-      name: product.name,
-      image: product.images[0],
-      description: product.description[0],
-      price: product.price,
-      quantity: 1,
-    };
-    dispatch(addToCart(user_id, newProduct));
-  };
+  // const addToCartHandler = () => {
+  //   const newProduct = {
+  //     _id: product._id,
+  //     name: product.name,
+  //     image: product.images[0],
+  //     description: product.description[0],
+  //     price: product.price,
+  //     quantity: 1,
+  //   };
+  //   dispatch(addToCart(user_id, newProduct));
+  // };
   return (
     <>
       <Card className={styles.Card} onClick={onClick}>
@@ -27,7 +27,7 @@ const Cards = ({ product, onClick }) => {
         <Card.Img
           variant="top"
           className={styles.img}
-          src={product.images[0]}
+          src={product.images[0]} //choosing first image from array of images
           alt="Card image cap"
         />
         <Card.Body>
@@ -35,7 +35,8 @@ const Cards = ({ product, onClick }) => {
             <b>{product.name}</b>
           </Card.Title>
           <Card.Text className={styles.description}>
-            {product.description[0]}
+            {product.description[0]}{" "}
+            {/*choosing first description from array of descriptions*/}
           </Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush ">

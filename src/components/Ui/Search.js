@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { searchProducts } from "../../actions/searchActions";
 
 export default function Search() {
+  //home page search bar
   const history = useHistory();
   const dispatch = useDispatch();
 

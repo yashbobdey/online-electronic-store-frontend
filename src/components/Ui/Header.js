@@ -16,34 +16,33 @@ import { emptyCartLogout } from "../../actions/cartActions";
 import Search from "./Search";
 import { getProductsByCategory } from "../../actions/productActions";
 
-
 function NavigationBar() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.user); //getting if user is logged in
 
-  const { cartLength } = useSelector((state) => state.cart);
+  const { cartLength } = useSelector((state) => state.cart); //getting total items in the cart
 
   const loginHandler = (e) => {
     e.preventDefault();
-    history.push("/login");
+    history.push("/login"); //redirecting to login
   };
 
   const logoutHandler = (e) => {
     e.preventDefault();
-    dispatch(logout());
+    dispatch(logout()); //dispatching logout request
     dispatch(emptyCartLogout());
     history.push("/login");
   };
 
   const cartHandler = (e) => {
     e.preventDefault();
-    history.push("/cart");
+    history.push("/cart"); //redirecting to cart
   };
 
   const onClickHandler = (category) => {
-    dispatch(getProductsByCategory(category));
+    dispatch(getProductsByCategory(category)); //dispatching request for getting products by category
     history.push("/products");
   };
 
@@ -69,33 +68,40 @@ function NavigationBar() {
             </Nav.Link>
 
             <NavDropdown
-                
               title={<span className="text-white my-auto">Products</span>}
               id="basic-nav-dropdown"
-              className={styles.nav_color_white}>
-
-              <NavDropdown.Item   
-              onClick={()=>{onClickHandler("Mobile")
-              history.push("/products")
-               }}>
+              className={styles.nav_color_white}
+            >
+              <NavDropdown.Item
+                onClick={() => {
+                  onClickHandler("Mobile");
+                  history.push("/products");
+                }}
+              >
                 Mobile
               </NavDropdown.Item>
-              <NavDropdown.Item 
-              onClick={()=>{onClickHandler("Tablet")
-              history.push("/products")
-               }}>
+              <NavDropdown.Item
+                onClick={() => {
+                  onClickHandler("Tablet");
+                  history.push("/products");
+                }}
+              >
                 Tablet
               </NavDropdown.Item>
-              <NavDropdown.Item 
-              onClick={()=>{onClickHandler("Headphones")
-              history.push("/products")
-               }}>
+              <NavDropdown.Item
+                onClick={() => {
+                  onClickHandler("Headphones");
+                  history.push("/products");
+                }}
+              >
                 Headphone
               </NavDropdown.Item>
-              <NavDropdown.Item 
-              onClick={()=>{onClickHandler("Laptop")
-              history.push("/products")
-               }}>
+              <NavDropdown.Item
+                onClick={() => {
+                  onClickHandler("Laptop");
+                  history.push("/products");
+                }}
+              >
                 Laptop
               </NavDropdown.Item>
             </NavDropdown>

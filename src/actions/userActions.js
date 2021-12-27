@@ -15,12 +15,13 @@ export const login = (user) => {
       .then((response) => {
         const token = response.data.token;
         const user = response.data.user;
-
+        console.log(user);
         localStorage.setItem("token", token);
         localStorage.setItem("user_id", user._id);
         localStorage.setItem("user_isAdmin", user.isAdmin);
         localStorage.setItem("user_address", JSON.stringify(user.address));
-
+        localStorage.setItem("user_fname", user.firstName);
+        localStorage.setItem("user_lname", user.lastName);
         dispatch(loginSuccess(token, user));
       })
       .catch((error) => {
@@ -166,27 +167,27 @@ export const update = (id, user) => {
 //******************************************************************
 //-------------------------- 3. Update User Password---------------------------
 //__________________________________________________________________
- 
+
 export const passwordUpdateRequest = () => {
   return {
     type: actions.PASSWORD_UPDATE_REQUEST,
   };
 };
- 
+
 export const passwordUpdateSuccess = (updatedUser) => {
   return {
     type: actions.PASSWORD_UPDATE_SUCCESS,
     payload: updatedUser,
   };
 };
- 
+
 export const passwordUpdateFailure = (error) => {
   return {
     type: actions.PASSWORD_UPDATE_FAILURE,
     payload: error,
   };
 };
- 
+
 export const passwordUpdate = (id, password) => {
   return (dispatch) => {
     dispatch(passwordUpdateRequest);
@@ -195,7 +196,7 @@ export const passwordUpdate = (id, password) => {
       .then((response) => {
         // response.data is the users
         const updatedUser = response.data.user;
- 
+
         dispatch(passwordUpdateSuccess(updatedUser));
       })
       .catch((error) => {

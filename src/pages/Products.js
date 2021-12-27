@@ -18,11 +18,12 @@ export default function Products() {
   const [searchItem, setSearchItem] = useState("");
 
   const cardHandler = (id) => {
-    history.push(`/product/${id}`);
+    history.push(`/product/${id}`); //pushing to product detail page
   };
 
-  const { isLoading, products } = useSelector((state) => state.products);
+  const { isLoading, products } = useSelector((state) => state.products); //getting all products from redux store
   let productList = [];
+  //product search bar
   if (products) {
     productList = products
       .filter((product) => {
@@ -35,6 +36,7 @@ export default function Products() {
         }
         return null;
       })
+      //mapping each product to MyCard component
       .map((product, index) => (
         <MyCard
           key={index}
@@ -70,7 +72,7 @@ export default function Products() {
           </Col>
         </Row>
         {isLoading && <Spinner />}
-        <Row>{!isLoading && productList}</Row>
+        <Row>{!isLoading && productList}</Row> {/*displaying products */}
       </Container>
     </div>
   );

@@ -7,13 +7,13 @@ import * as actions from "../actions/adminActions";
 import { Container, Row } from "react-bootstrap";
 
 const UpdateProducts = (props) => {
-  const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [rating, setRating] = useState("");
+  const [price, setPrice] = useState(""); //initializing price field
+  const [quantity, setQuantity] = useState(""); //initializing state field
+  const [rating, setRating] = useState(""); //initializing rating field
   let { id } = useParams();
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.admin.product);
-  const history = useHistory();
+  const product = useSelector((state) => state.admin.product); //fetching particular product from redux store
+  const history = useHistory(); // use of history object
 
   useEffect(() => {
     if (product != null) {
@@ -22,36 +22,41 @@ const UpdateProducts = (props) => {
       setRating(product.rating);
     }
 
-    dispatch(actions.getProduct(id));
+    dispatch(actions.getProduct(id)); //dipatching the action to get the original product to be updated
   }, [product, dispatch, id]);
 
   const onUpdateProducts = (e) => {
     e.preventDefault();
 
     const update_product = Object.assign(product, {
+      // creating new object for updated product
       price: price,
       quantity: quantity,
       rating: rating,
     });
     console.log(update_product);
-    dispatch(actions.updateProduct(update_product));
+    dispatch(actions.updateProduct(update_product)); //dispatching redux action for product update
     alert("data updated");
-    history.push("/admin/products");
+    history.push("/admin/products"); //redirecting to admin landing page
   };
 
   const handlePriceChange = (event) => {
+    //handling price change
     console.log(event.target.value);
-    setPrice(event.target.value);
+    setPrice(event.target.value); //setting changed price
   };
   const handleQuantityChange = (event) => {
+    //handling quantity change
     console.log(event.target.value);
-    setQuantity(event.target.value);
+    setQuantity(event.target.value); //setting changed quantity
   };
   const handleRatingChange = (event) => {
+    //handling rating change
     console.log(event.target.value);
-    setRating(event.target.value);
+    setRating(event.target.value); //setting changed rating
   };
   return (
+    //form for updating the product info for admin
     <>
       <Container>
         <Row md="2" className="justify-content-md-center mt-4">
@@ -98,4 +103,4 @@ const UpdateProducts = (props) => {
   );
 };
 
-export default UpdateProducts;
+export default UpdateProducts; //exporting the component

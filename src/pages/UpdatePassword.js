@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Container, Form, Row, Col, Button, Toast } from "react-bootstrap";
+import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { logout, passwordUpdate } from "../actions/userActions";
-import MyModal from "../components/custom/MyModal"
+import MyModal from "../components/custom/MyModal";
 import { useForm } from "react-hook-form";
 
 export default function UpdatePassword() {
@@ -14,19 +14,18 @@ export default function UpdatePassword() {
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
-    dispatch(logout());
-    history.push("/login")
-    
-   }
-  const toolTipHandler = e => {
+    dispatch(logout()); //logging out user
+    history.push("/login"); //redirecting to login
+  };
+  const toolTipHandler = (e) => {
     e.preventDefault();
     setToolTip("Updated");
-  }
-  useEffect(()=>{
+  };
+  useEffect(() => {
     toolTip === "Updated" && setShow(true);
-    setToolTip("Update User")
-  },[dispatch, toolTip])
- 
+    setToolTip("Update User");
+  }, [dispatch, toolTip]);
+
   const {
     register,
     handleSubmit,
@@ -34,30 +33,29 @@ export default function UpdatePassword() {
     formState: { errors },
   } = useForm();
 
-  
   const password = useRef({});
-  password.current = watch("password", "");
+  password.current = watch("password", ""); //comparing passwords
 
   watch("opassword");
   watch("cpassword");
 
-const user_id = useSelector(state => state.user.user._id);
+  const user_id = useSelector((state) => state.user.user._id);
   const submitHandler = (data) => {
     console.log("errors", errors);
     const password = data.password;
     console.log("password", password);
-    dispatch(passwordUpdate(user_id, password));
+    dispatch(passwordUpdate(user_id, password)); //dispatching password update request
   };
   return (
     <Container>
-      <MyModal
-      show={show}
+      <MyModal //handling modal
+        show={show}
         variant="success"
         title="Password Changed Successfully!"
         message={`Your password has been successfully changed.`}
         handleClose={handleClose}
       />
-            
+
       <Row md="6" className="justify-content-md-center mt-5">
         <Col md="6">
           <Form onSubmit={handleSubmit(submitHandler)}>
@@ -103,11 +101,20 @@ const user_id = useSelector(state => state.user.user._id);
                 })}
               />
               <Form.Text className="text-danger">
-                {errors.cpassword && errors.cpassword.message}
+                {errors.cpassword && errors.cpassword.message}{" "}
+                {/* password mismatch error */}
               </Form.Text>
             </Form.Group>
 
-            <Button variant="warning" size="lg" block type="submit" onClick={toolTipHandler}>Submit</Button>
+            <Button
+              variant="warning"
+              size="lg"
+              block
+              type="submit"
+              onClick={toolTipHandler}
+            >
+              Submit
+            </Button>
           </Form>
         </Col>
       </Row>
