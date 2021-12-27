@@ -30,7 +30,7 @@ const deleteProduct = (payload) => {
 };
 export const deleteOne = (product) => {
   return (dispatch) => {
-    fetch("http://localhost:8080/products/" + product.id, {
+    fetch("https://one-electronic-store-backend.herokuapp.com/" + product.id, {
       method: "DELETE",
     })
       .then((res) => res.json())
