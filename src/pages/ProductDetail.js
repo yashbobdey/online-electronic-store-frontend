@@ -15,17 +15,23 @@ export default function ProductDetail() {
   const history = useHistory();
 
   const [aboutCart, setAboutCart] = useState("Add To Cart");
+  const [cartProduct, setCartProduct] = useState(false);
+  const [unAddedProductQuantity, setUnaddedProductQuantity] = useState(1);
   const { cartItems } = useSelector((state) => state.cart);
-
+  let product = useSelector((state) => state.products.product);
   useEffect(() => {
     dispatch(getProduct(product_id));
-    for (const item of cartItems) {
-      if (item._id === product_id) setAboutCart("Go To Cart");
-      else setAboutCart("Add To Cart");
-    }
-  }, [product_id, dispatch, cartItems]);
 
-  let product = useSelector((state) => state.products.product);
+    cartItems.forEach((cartItem) => {
+      if (cartItem._id === product_id) {
+        setAboutCart("Go To Cart");
+        setCartProduct(true);
+      } else {
+        setAboutCart("Add To Cart");
+      }
+    });
+  }, [product_id, dispatch, cartItems, unAddedProductQuantity, cartProduct]);
+
   const user_id = useSelector((state) => state.user.user._id);
 
   let specificationList = [];
@@ -42,7 +48,14 @@ export default function ProductDetail() {
       );
     }
   }
-
+  const unAddedProductQuantityIncrementHandler = () => {
+    setUnaddedProductQuantity(unAddedProductQuantity + 1);
+  };
+  const unAddedProductQuantityDecrementHandler = () => {
+    if (unAddedProductQuantity === 1) {
+      alert("Quantity cant be 0");
+    } else setUnaddedProductQuantity(unAddedProductQuantity - 1);
+  };
   return (
     <>
       {product.specification && (
@@ -115,11 +128,44 @@ export default function ProductDetail() {
                     <i className="fa fa-star" aria-hidden="true"></i>
                   </h5>
                 </div>
+
                 <div className={styles.specslist}>
                   <h3>Details:</h3>
 
                   <p>{product.description[1]}</p>
                 </div>
+                {!cartProduct && (
+                  <Row>
+                    <Col>
+                      <div>
+                        <h5>Quantity:</h5>
+                        <button
+                          style={{ float: "left" }}
+                          className="bg-transparent btn-outline-light text-dark"
+                          onClick={unAddedProductQuantityDecrementHandler}
+                        >
+                          <i class="fas fa-minus-circle"></i>
+                        </button>
+                        <h4
+                          style={{
+                            float: "left",
+                            marginLeft: "10px",
+                            marginRight: "10px",
+                          }}
+                        >
+                          {unAddedProductQuantity}
+                        </h4>
+                        <button
+                          style={{ float: "left" }}
+                          className="bg-transparent btn-outline-light text-dark"
+                          onClick={unAddedProductQuantityIncrementHandler}
+                        >
+                          <i class="fas fa-plus-circle"></i>
+                        </button>
+                      </div>
+                    </Col>
+                  </Row>
+                )}
 
                 <Button
                   variant="outline-warning"
@@ -132,11 +178,13 @@ export default function ProductDetail() {
                       image: product.images[0],
                       description: product.description[0],
                       price: product.price,
-                      quantity: 1,
+                      quantity: unAddedProductQuantity
+                        ? unAddedProductQuantity
+                        : 1,
                     };
 
                     dispatch(addToCart(user_id, newProduct));
-
+                    setUnaddedProductQuantity(1);
                     history.push("/cart");
                   }}
                 >
@@ -154,7 +202,9 @@ export default function ProductDetail() {
                       image: product.images[0],
                       description: product.description[0],
                       price: product.price,
-                      quantity: 1,
+                      quantity: unAddedProductQuantity
+                        ? unAddedProductQuantity
+                        : 1,
                     };
 
                     dispatch(addToCart(user_id, newProduct));
