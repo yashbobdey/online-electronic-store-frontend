@@ -15,7 +15,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { addOrder } from "../actions/ordersActions";
-import MyModal from "../components/custom/MyModal";
+// import MyModal from "../components/custom/MyModal";
 
 const ConfirmOrder = () => {
   const history = useHistory();
@@ -67,13 +67,13 @@ const ConfirmOrder = () => {
 
   return (
     <>
-      <MyModal //populating MyModal component
+      {/* <MyModal //populating MyModal component
         show={showSuccess}
         variant="success"
         title="Order Placed Successfully!"
         message={`Your order  has been successfully placed and awaiting delivery details.`}
         handleClose={handleSuccessClose}
-      />
+      /> */}
       {isLoading && <Spinner />}
       {!isLoading && (
         <div className="justify-content-md-center">
@@ -163,6 +163,8 @@ const ConfirmOrder = () => {
                         dispatch(addOrder(newOrder)); //placing order
                         dispatch(emptyCartLogout(user_id)); //emptying the cart
                         setToolTip("Order Placed");
+                        alert("Congratulations!! Order placed!");
+                        history.push("/");
                       }}
                     >
                       Place Order
