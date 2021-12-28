@@ -36,14 +36,14 @@ export default function OrderCard({ product }) {
   };
   return (
     <div>
-      <MyModal
+      {/* <MyModal
         show={show}
         variant="error"
         title="Something went wrong"
         message={errorMessage}
         handleLogin={handleLogin}
         handleClose={handleClose}
-      />
+      /> */}
       <div className="card mb-5  bg-light text-dark justify-content-md-center">
         <div className="row g-0">
           <div className="col-md-4">
