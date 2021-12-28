@@ -20,7 +20,7 @@ export default function ProductDetail() {
   useEffect(() => {
     dispatch(getProduct(product_id));
     for (const item of cartItems) {
-      if (item._id === product._id) setAboutCart("Go To Cart");
+      if (item._id === product_id) setAboutCart("Go To Cart");
       else setAboutCart("Add To Cart");
     }
   }, [product_id, dispatch, cartItems]);
