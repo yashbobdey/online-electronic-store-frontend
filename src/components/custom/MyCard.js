@@ -1,25 +1,22 @@
 //
-import React from "react";
-// import { useSelector, useDispatch } from "react-redux";
+import { React, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 // import { addToCart } from "../../actions/cartActions";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import styles from "./MyCard.module.css";
 
 const Cards = ({ product, onClick }) => {
-  // const dispatch = useDispatch();
-  // const user_id = useSelector((state) => state.user.user._id);
+  const { cartItems } = useSelector((state) => state.cart);
+  const [addedToCart, setAddedToCart] = useState(false);
 
-  // const addToCartHandler = () => {
-  //   const newProduct = {
-  //     _id: product._id,
-  //     name: product.name,
-  //     image: product.images[0],
-  //     description: product.description[0],
-  //     price: product.price,
-  //     quantity: 1,
-  //   };
-  //   dispatch(addToCart(user_id, newProduct));
-  // };
+  useEffect(() => {
+    for (const cartItem of cartItems) {
+      if (cartItem._id === product._id) {
+        setAddedToCart(true);
+      }
+    }
+  }, [cartItems, product]);
+
   return (
     <>
       <Card className={styles.Card} onClick={onClick}>
@@ -45,6 +42,11 @@ const Cards = ({ product, onClick }) => {
               <i className="fas fa-rupee-sign"></i>
               {product.price}
             </span>
+            {addedToCart && (
+              <span className="  text-light border rounded px-2 py-0 ml-4">
+                <i class="fas fa-check">Added</i>
+              </span>
+            )}
             <span className="float-right bg-warning text-light border rounded px-2 py-0 ">
               {product.rating} <i className="fas fa-star"></i>
             </span>
